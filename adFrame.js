@@ -191,8 +191,6 @@
 			---------------------------------------------------------------------------------*/
 			function _resizeToNewContentHeight(event)
 			{
-        console.log(event.origin, src)
-        console.log(event.origin === src)
 				// verify the event originates from the iframes source
 				if (event.origin === src)
 				{
