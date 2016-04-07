@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AdFrame Ad</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!----------------------------------------------------------------------
+	Moved css inline to prevent IE from improperly caching rules
+	------------------------------------------------------------------------>
+	<style>
+	 /* Globals */
+
+	html { overflow: hidden }
+	body {
+		background: #ccc;
+		padding:0;
+		margin:0;
+	}
+
+	.wrapper {
+		width: 100%;
+		text-align: center;
+		display: inline-block;
+	}
+
+	.wrapper * {
+		outline: none;
+		border-style:none;
+	}
+
+
+	.wrapper h1 { font-size: 2.5rem ; }
+	.wrapper h2 { font-size: 1.7rem ; }
+	.wrapper h3 {
+		font-size: 1.4rem ;
+		margin: 4px auto;
+		background: #fff;
+		border-radius: 5px;
+		padding: 5px 10px;
+		display: inline-block;
+	}
+
+	</style>
+</head>
+<body>
+
+
+	<div class="wrapper" id="wrapper">
+    <!--- FRAME CONTENT HERE --->
+    <h1>AdFrame</h1>
+    <h1>A responsive, cross-site safe, iframe ad boilerplate.</h1>
+    <h2>Easily trackable with google analytics.</h2>
+	</div>
+
+		<script>
+
+			var wrapper = document.getElementById("wrapper");
+			var host = window.location.search.replace("?ref=","");
+			var resizeTimer;
+
+			// Listen for resize inside of iframe to send message
+			window.addEventListener( "resize", resizeCallback);
+
+
+			/*	resizeCallback()
+				Sets callback function that creates a timer on resize to prevent rapidly
+				firing the postHeightToParent function for improved performance
+			---------------------------------------------------------------------------------*/
+			function resizeCallback()
+			{
+				clearTimeout(resizeTimer);
+				resizeTimer = setTimeout(postHeightToParent, 50);
+			}
+
+
+			/*	postHeightToParent()
+				Uses messaging event to send content height to parent iframe
+			---------------------------------------------------------------------------------*/
+			function postHeightToParent()
+			{
+				/* Selects the parent as the window to post to,
+				   verifies theproper host is the recipient of the message,
+				   and send the source iFrame and page height back
+				 */
+         console.log(host)
+				window.parent.postMessage({
+          srcFrame: window.name,
+          height: wrapper.scrollHeight + "px" }
+        , host )
+			}
+
+			// Fire on load to set initial height;
+			setTimeout(function(){ postHeightToParent() }, 50);
+
+		</script>
+
+</body>
+</html>
