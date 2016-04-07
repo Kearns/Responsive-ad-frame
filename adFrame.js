@@ -24,17 +24,16 @@
 
 			/* AdFrame Ad settings
 			-----------------------------------------------------------*/
-
 			// fix for IE missing origin
 			if (!window.location.origin)
 			{
-			  window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
+				window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
 			}
 
-      // SRC: domain of the ad html ex http://example.com/
-      var src = "http://0.0.0.0:8000";
-      //scriptSrc: add domain from which the script is loaded from (ex http://example.com/adFrame.js)
-      var scriptSrc = "http://0.0.0.0:8000/adFrame.js";
+			// SRC: domain of the ad html ex http://example.com/
+			var src = "http://0.0.0.0:8000";
+			//scriptSrc: add domain from which the script is loaded from (ex http://example.com/adFrame.js)
+			var scriptSrc = "http://0.0.0.0:8000/adFrame.js";
 
 
 			var clientID = window.location.origin;
@@ -43,14 +42,14 @@
 			var scriptID = "adFrame-ad-script";
 
 			/* create a externally accessible iframe property for the AdFrame ad instance
-			   to be used in generation.
+			to be used in generation.
 			----------------------------------------------------------------------------*/
 			this.iframes = [];
 
 
 			/*	generateIFrame(userOptions)
-				Genrates iframe with optional user generated options
-				@param userOptions - User defined iframe options
+			Genrates iframe with optional user generated options
+			@param userOptions - User defined iframe options
 			---------------------------------------------------------------------------------*/
 			this.generateIFrame = function(userOptions)
 			{
@@ -92,7 +91,7 @@
 
 
 			/*	init()
-				Runs checks for externally loaded script, etc. and creates new i	Frame
+			Runs checks for externally loaded script, etc. and creates new i	Frame
 			---------------------------------------------------------------------------------*/
 			this.init = function()
 			{
@@ -108,11 +107,10 @@
 			/*--- PRIVATE FUNCTIONS -----------------*/
 			/*---------------------------------------*/
 
-
 			/*	_extendDefaults(defaults, options)
-				Change default options with user defined
-				@param defaults - Default options
-				@param properties - user defined options
+			Change default options with user defined
+			@param defaults - Default options
+			@param properties - user defined options
 			---------------------------------------------------------------------------------*/
 			function _extendDefaults(defaults, options)
 			{
@@ -120,18 +118,16 @@
 
 				for (property in options)
 				{
-				  if (options.hasOwnProperty(property))
-				  {
-					defaults[property] = options[property];
-				  }
+					if (options.hasOwnProperty(property))
+					{
+						defaults[property] = options[property];
+					}
 				}
-
 				return defaults;
 			}
 
-
 			/*	_ifLoadedExternally()
-				if script is loaded externally generate uid and set options with data-* attributes.
+			if script is loaded externally generate uid and set options with data-* attributes.
 			---------------------------------------------------------------------------------------*/
 			function _ifLoadedExternally()
 			{
@@ -171,7 +167,7 @@
 
 							if(embedScript.getAttribute("data-" + prop))
 							{
-							   embedOptions[prop] = embedScript.getAttribute("data-" + prop);
+								embedOptions[prop] = embedScript.getAttribute("data-" + prop);
 							}
 						}
 					);
@@ -184,10 +180,9 @@
 				}
 			}
 
-
 			/*	_resizeToNewContentHeight()
-				Recieves message posted from child frame with height specifications for
-				resizing the iframe.
+			Recieves message posted from child frame with height specifications for
+			resizing the iframe.
 			---------------------------------------------------------------------------------*/
 			function _resizeToNewContentHeight(event)
 			{
@@ -200,8 +195,6 @@
 					iFrame.style.height = event.data.height;
 				}
 			}
-
-
 			return this;
 		}
 
