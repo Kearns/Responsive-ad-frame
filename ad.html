@@ -5,9 +5,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<!----------------------------------------------------------------------
-	Moved css inline to prevent IE from improperly caching rules
-	------------------------------------------------------------------------>
+	<!------------------------------------------------------------------------>
+	<!-- Moved css inline to prevent IE from improperly caching rules -------->
+	<!------------------------------------------------------------------------>
 	<style>
 	 /* Globals */
 
@@ -47,7 +47,7 @@
 
 
 	<div class="wrapper" id="wrapper">
-    <!--- FRAME CONTENT HERE --->
+    <!-- FRAME CONTENT HERE -->
     <h1>AdFrame</h1>
     <h1>A responsive, cross-site safe, iframe ad boilerplate.</h1>
     <h2>Easily trackable with google analytics.</h2>
@@ -64,8 +64,8 @@
 
 
 			/*	resizeCallback()
-				Sets callback function that creates a timer on resize to prevent rapidly
-				firing the postHeightToParent function for improved performance
+			**	Sets callback function that creates a timer on resize to prevent rapidly
+			**	firing the postHeightToParent function for improved performance
 			---------------------------------------------------------------------------------*/
 			function resizeCallback()
 			{
@@ -75,7 +75,7 @@
 
 
 			/*	postHeightToParent()
-				Uses messaging event to send content height to parent iframe
+			**	Uses messaging event to send content height to parent iframe
 			---------------------------------------------------------------------------------*/
 			function postHeightToParent()
 			{
@@ -83,11 +83,10 @@
 				   verifies theproper host is the recipient of the message,
 				   and send the source iFrame and page height back
 				 */
-         console.log(host)
 				window.parent.postMessage({
-          srcFrame: window.name,
-          height: wrapper.scrollHeight + "px" }
-        , host )
+			          srcFrame: window.name,
+			          height: wrapper.scrollHeight + "px" }
+			        , host )
 			}
 
 			// Fire on load to set initial height;
